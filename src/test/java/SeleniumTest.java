@@ -9,38 +9,46 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeleniumTest {
 
-    private WebDriver driver;
+    private WebDriver webDriver;
 
     @Before
     public void setUp() {
         // Set up ChromeDriver path
-        System.setProperty("webdriver.chrome.driver", "./chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/driver/chromedriver");//linux_64
+
+        // Get file
+        File file = new File("ButtonCounter.html");
+        String path = "file://" + file.getAbsolutePath();
 
         // Create a new ChromeDriver instance
-        driver = new ChromeDriver();
-        File file = new File("ButtonCounter.html");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        webDriver = new ChromeDriver(options);
+
         // Open the HTML file
-        driver.get(file.getAbsolutePath());
+        webDriver.get(path);
     }
+
     @Test
     public void testIncrementButton() {
 
         // Find the increment button and click it
-        WebElement incrementButton = driver.findElement(By.id("button"));
+        WebElement incrementButton = webDriver.findElement(By.id("button"));
         incrementButton.click();
 
         // Find the display element and verify the incremented value
-        WebElement displayElement = driver.findElement(By.id("count"));
+        WebElement displayElement = webDriver.findElement(By.id("count"));
         assertEquals("1", displayElement.getText());
     }
     @Test
     public void testIncrementButtonMultipleTimes() {
 
         // Find the increment button and click it
-        WebElement incrementButton = driver.findElement(By.id("button"));
+        WebElement incrementButton = webDriver.findElement(By.id("button"));
         incrementButton.click();
         incrementButton.click();
         incrementButton.click();
@@ -50,7 +58,7 @@ public class SeleniumTest {
         
 
         // Find the display element and verify the incremented value
-        WebElement displayElement = driver.findElement(By.id("count"));
+        WebElement displayElement = webDriver.findElement(By.id("count"));
         assertEquals("6", displayElement.getText());
 
     }
@@ -60,6 +68,6 @@ public class SeleniumTest {
     @After
     public void tearDown() {
         // Close the browser
-        driver.quit();
+        webDriver.quit();
     }
 }
