@@ -262,11 +262,7 @@ public class SeleniumTest {
     
     private File findHtmlFile() {
         String[] possibleHtmlPaths = {
-            "src/main/ButtonCounter.html",
-            "ButtonCounter.html",
-            "src/test/resources/ButtonCounter.html",
-            "test-resources/ButtonCounter.html",
-            "src/main/resources/ButtonCounter.html"
+            "src/main/ButtonCounter.html"
         };
         
         for (String htmlPath : possibleHtmlPaths) {
