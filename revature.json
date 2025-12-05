@@ -1,0 +1,20 @@
+{
+  "type": "java",
+  "testFiles": [
+    {
+      "path": "src/test/java/SeleniumTest.java",
+      "testCases": [
+        {
+          "methodName": "testIncrementButton",
+          "label": "Verify single increment button click",
+          "description": "Checks that clicking the increment button once updates the display count from 0 to 1."
+        },
+        {
+          "methodName": "testIncrementButtonMultipleTimes",
+          "label": "Verify multiple increment button clicks",
+          "description": "Checks that clicking the increment button multiple times correctly updates the display count (6 clicks expected to show 6)."
+        }
+      ]
+    }
+  ]
+}
